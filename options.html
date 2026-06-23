@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>薇译 Vanslate 设置</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="options">
+      <header class="heroBanner brandHero">
+        <img class="heroLogo" src="icons/png/vanslate-128.png" alt="薇译 Vanslate">
+        <div>
+          <h1>薇译 Vanslate</h1>
+          <p class="heroCn" data-i18n="appSubtitle">不止翻译。</p>
+          <p class="heroEn" data-i18n="appEnglishSubtitle">Vanslate - AI Context Translator & Verbalizer</p>
+        </div>
+      </header>
+
+      <form id="settingsForm">
+        <section class="settingsCard">
+          <h2><span class="sectionIcon">⚙</span><span data-i18n="commonModelSettings">通用模型设置</span></h2>
+          <div class="fieldTable">
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="uiLanguage">🌏 界面语言</span>
+              <select id="uiLanguage"></select>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="baseUrl">🔗 通用 API 地址 Base URL</span>
+              <input id="baseUrl" type="url" placeholder="https://api.openai.com/v1" required>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="apiKey">🔑 通用 API Key</span>
+              <span class="fieldControl">
+                <input id="apiKey" type="text" autocomplete="off" placeholder="sk-..." required>
+                <span class="fieldHint compact" data-i18n="apiKeyEncryptedHint">保存后会加密存储和脱敏显示。</span>
+              </span>
+            </label>
+
+            <label class="fieldRow tall">
+              <span class="fieldLabel" data-i18n="modelList">▣ 通用模型列表，每行一个</span>
+              <textarea id="models" rows="4" placeholder="gpt-4o-mini
+gpt-4.1-mini
+deepseek-chat"></textarea>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="defaultModel">◇ 通用默认模型</span>
+              <input id="model" type="text" placeholder="gpt-4o-mini" required>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="sourceLanguage">🌐 源语言</span>
+              <select id="sourceLanguage">
+                <option value="auto">auto</option>
+                <option value="中文">中文</option>
+                <option value="English">English</option>
+                <option value="日本語">日本語</option>
+                <option value="한국어">한국어</option>
+                <option value="Français">Français</option>
+                <option value="Deutsch">Deutsch</option>
+                <option value="Español">Español</option>
+                <option value="Português">Português</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Русский">Русский</option>
+                <option value="العربية">العربية</option>
+                <option value="हिन्दी">हिन्दी</option>
+                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                <option value="Tiếng Việt">Tiếng Việt</option>
+                <option value="ไทย">ไทย</option>
+              </select>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="targetLanguage">目标语言</span>
+              <select id="targetLanguage">
+                <option value="中文">中文</option>
+                <option value="English">English</option>
+                <option value="日本語">日本語</option>
+                <option value="한국어">한국어</option>
+                <option value="Français">Français</option>
+                <option value="Deutsch">Deutsch</option>
+                <option value="Español">Español</option>
+                <option value="Português">Português</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Русский">Русский</option>
+                <option value="العربية">العربية</option>
+                <option value="हिन्दी">हिन्दी</option>
+                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                <option value="Tiếng Việt">Tiếng Việt</option>
+                <option value="ไทย">ไทย</option>
+              </select>
+            </label>
+            <div class="fieldRow tall full">
+              <p class="fieldHint" data-i18n="globalModelHint">通用模型设置是所有页面翻译和工具的默认模型。工具没有单独配置模型时，会继承这里的 API 地址、API Key 和默认模型。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="settingsCard">
+          <h2><span class="sectionIcon">✦</span><span data-i18n="aiTools">AI 行为与工具</span></h2>
+          <div class="fieldTable">
+            <div class="fieldRow tall full">
+              <details class="pagePromptCard">
+                <summary class="pagePromptHead">
+                  <strong data-i18n="pagePrompt">页面处理提示词</strong>
+                  <span data-i18n="pagePromptScope">用于全文翻译、自动翻译和虚拟滚动续翻译</span>
+                </summary>
+                <div class="pagePromptBody">
+                  <article class="promptHelp">
+                    <strong data-i18n="usageDescription">作用说明</strong>
+                    <p data-i18n="pagePromptHelp">系统提示词定义模型角色和输出规则；用户提示词负责告诉模型如何处理本次页面文本，并必须保留返回 JSON 的要求，否则页面译文无法逐段写回。</p>
+                    <p data-i18n="pagePromptReadonlyHelp">这两段提示词会影响全文翻译的结构化回写协议，当前仅做透明展示，不开放编辑。</p>
+                  </article>
+                  <label class="promptField">
+                    <span class="fieldLabel" data-i18n="pageSystemPrompt">页面处理系统提示词</span>
+                    <textarea id="translationSystemPrompt" rows="4" readonly></textarea>
+                  </label>
+                  <label class="promptField">
+                    <span class="fieldLabel" data-i18n="pageUserPrompt">页面处理用户提示词</span>
+                    <textarea id="translationUserPrompt" rows="8" readonly></textarea>
+                  </label>
+                </div>
+              </details>
+            </div>
+            <div class="fieldRow tall full">
+              <details class="pagePromptCard">
+                <summary class="pagePromptHead">
+                  <strong data-i18n="collectionRules">页面文本采集规则</strong>
+                  <span data-i18n="collectionRulesScope">控制全文翻译会扫描哪些 DOM 文本块</span>
+                </summary>
+                <div class="pagePromptBody">
+                  <article class="promptHelp">
+                    <strong data-i18n="collectionRulesHelpTitle">规则说明</strong>
+                    <p data-i18n="collectionRulesHelp">按 JSON 配置标签白名单和评论/反馈区域识别规则。blockTags 是常规正文标签，formTags 是表单说明标签，supplementalTags 会结合 supplementalContextPattern 采集评论等区域，metadataPattern 用于排除作者、日期、评分等元信息。</p>
+                  </article>
+                  <label class="promptField">
+                    <span class="fieldLabel" data-i18n="collectionRulesJson">采集规则 JSON</span>
+                    <textarea id="collectionRules" rows="10" spellcheck="false"></textarea>
+                  </label>
+                </div>
+              </details>
+            </div>
+            <div class="fieldRow tall full">
+              <details class="pagePromptCard">
+                <summary class="pagePromptHead">
+                  <strong data-i18n="skipRules">跳过翻译规则</strong>
+                  <span data-i18n="skipRulesScope">控制哪些短文本、代码、数字、链接等无需发送给模型</span>
+                </summary>
+                <div class="pagePromptBody">
+                  <article class="promptHelp">
+                    <strong data-i18n="skipRulesHelpTitle">规则说明</strong>
+                    <p data-i18n="skipRulesHelp">按 JSON 配置整段跳过规则。enabled 控制是否启用；patterns 是正则表达式数组，支持普通正则源字符串，也支持 /pattern/flags 写法。仅建议配置高置信规则，避免把需要翻译的正文整段跳过。</p>
+                  </article>
+                  <label class="promptField">
+                    <span class="fieldLabel" data-i18n="skipRulesJson">跳过规则 JSON</span>
+                    <textarea id="skipRules" rows="10" spellcheck="false"></textarea>
+                  </label>
+                </div>
+              </details>
+            </div>
+            <div class="fieldRow tall full">
+              <div class="promptHelpGrid">
+                <article class="promptHelp">
+                  <strong data-i18n="selectionToolPrompt">划词工具提示词</strong>
+                  <p data-i18n="selectionToolHelp">用于选中文本后的工具栏。每个工具都有自己的系统提示词和用户提示词，输出会按 Markdown 渲染，并支持复制。</p>
+                </article>
+              </div>
+            </div>
+            <div class="fieldRow tall full">
+              <div class="toolEditorHeader">
+                <span class="fieldLabel" data-i18n="selectionTools">划词工具</span>
+                <div class="toolEditorActions">
+                  <button id="addSelectionToolBtn" type="button" class="secondary miniButton" title="新增一个划词工具" data-i18n="addTool">+ 工具</button>
+                  <button id="toggleSelectionToolsJsonBtn" type="button" class="secondary miniButton" title="切换 JSON 源码编辑" data-i18n="jsonSource">JSON 源码</button>
+                </div>
+              </div>
+              <div id="selectionToolsEditor" class="selectionToolsEditor" aria-label="划词工具可视化配置"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="settingsCard">
+          <h2><span class="sectionIcon">✦</span><span data-i18n="experienceSettings">体验设置</span></h2>
+          <div class="fieldTable">
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="renderMode">▣ 译文渲染方式</span>
+              <select id="renderMode">
+                <option value="inline" data-i18n="renderInline">源元素内追加译文</option>
+                <option value="block" data-i18n="renderBlock">块元素复制一份并替换为译文</option>
+              </select>
+            </label>
+
+            <label class="fieldRow checkbox">
+              <span class="fieldLabel" data-i18n="customTranslationColor">□ 自定义译文颜色</span>
+              <input id="translationColorEnabled" type="checkbox">
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="translationColor">🖌 译文颜色</span>
+              <input id="translationColor" type="color">
+            </label>
+
+            <label class="fieldRow tall full">
+              <span class="fieldLabel" data-i18n="translationCss">译文 CSS</span>
+              <div class="cssTemplateGrid" id="translationCssTemplates" aria-label="译文 CSS 模板"></div>
+              <textarea id="translationCss" rows="5" data-i18n-placeholder="translationCssPlaceholder" placeholder="font-style: italic;
+opacity: 0.86;
+
+/* 也可以写完整规则 */
+.vanslate-result {
+  border-left: 2px solid #0867f2;
+  padding-left: 0.45em;
+}"></textarea>
+            </label>
+
+            <label class="fieldRow checkbox">
+              <span class="fieldLabel" data-i18n="enableCache">☑ 启用翻译缓存</span>
+              <input id="enableCache" type="checkbox">
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="floatingBallMode">悬浮工具显示方式</span>
+              <select id="floatingBallMode">
+                <option value="always" data-i18n="floatingBallAlways">一直显示</option>
+                <option value="hidden" data-i18n="floatingBallHidden">不显示</option>
+                <option value="hover" data-i18n="floatingBallHover">固定右上角，悬浮显示</option>
+              </select>
+            </label>
+
+            <label class="fieldRow">
+              <span class="fieldLabel" data-i18n="retryCount">⟳ 失败重试次数</span>
+              <input id="retryCount" type="number" min="0" max="5" step="1">
+            </label>
+          </div>
+        </section>
+
+        <section class="settingsCard">
+          <h2><span class="sectionIcon">↻</span><span data-i18n="autoTranslateRules">自动翻译规则</span></h2>
+          <div class="fieldTable">
+            <label class="fieldRow checkbox">
+              <span class="fieldLabel" data-i18n="autoTranslateOnRules">□ 匹配规则时自动翻译页面</span>
+              <input id="enableAutoTranslate" type="checkbox">
+            </label>
+            <label class="fieldRow tall full">
+              <span class="fieldLabel" data-i18n="urlRules">▸ URL 规则，每行一条，支持 * 通配符或 /regex/</span>
+              <textarea id="autoTranslateRules" rows="5" placeholder="https://example.com/*
+/docs\/.+/"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="settingsCard">
+          <h2><span class="sectionIcon">⚑</span><span data-i18n="glossary">术语表</span></h2>
+          <div class="fieldTable">
+            <label class="fieldRow tall full">
+              <span class="fieldLabel" data-i18n="glossaryFormat">每行一个术语，格式：原文 => 译文</span>
+              <textarea id="glossary" rows="5" data-i18n-placeholder="glossaryPlaceholder" placeholder="Large Language Model => 大语言模型
+browser extension => 浏览器插件"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button type="submit" data-i18n="saveSettings">▣ 保存设置</button>
+          <button id="testBtn" type="button" class="secondary" data-i18n="testApi">🚀 测试 API</button>
+          <button id="resetPromptsBtn" type="button" class="secondary" data-i18n="resetPrompts">↺ 恢复默认提示词</button>
+          <button id="clearCacheBtn" type="button" class="secondary" data-i18n="clearCache">⌫ 清空缓存</button>
+          <a class="actionLink secondary" href="https://tools.vinxea.com/" target="_blank" rel="noreferrer" data-i18n="authorTools">作者工具集</a>
+        </div>
+      </form>
+
+      <dialog id="selectionToolsJsonWrap" class="jsonSourceDialog">
+        <div class="jsonSourcePanel">
+          <header>
+            <strong data-i18n="jsonTitle">划词工具 JSON 源码</strong>
+            <button id="closeSelectionToolsJsonBtn" type="button" class="secondary iconMiniButton" title="关闭">×</button>
+          </header>
+          <textarea id="selectionTools" rows="18" spellcheck="false"></textarea>
+          <footer>
+            <button id="applySelectionToolsJsonBtn" type="button" data-i18n="applyJson">应用 JSON</button>
+            <button id="cancelSelectionToolsJsonBtn" type="button" class="secondary" data-i18n="close">关闭</button>
+          </footer>
+        </div>
+      </dialog>
+
+      <aside class="placeholderHelp floatingPlaceholderHelp" aria-label="占位符说明">
+        <strong data-i18n="placeholderHelp">占位符说明</strong>
+        <dl>
+          <div><dt><code>{textsJson}</code></dt><dd data-i18n="phTextsJson">页面待处理文本数组，格式为 {"texts":["..."]}。</dd></div>
+          <div><dt><code>{text}</code></dt><dd data-i18n="phText">当前批次合并文本；在划词工具中表示用户选中的文本。</dd></div>
+          <div><dt><code>{sourceLanguage}</code></dt><dd data-i18n="phSourceLanguage">设置中的源语言，例如 auto 或 English。</dd></div>
+          <div><dt><code>{sourceLanguagePrompt}</code></dt><dd data-i18n="phSourceLanguagePrompt">根据源语言自动生成的说明，源语言为 auto 时表示自动检测。</dd></div>
+          <div><dt><code>{targetLanguage}</code></dt><dd data-i18n="phTargetLanguage">设置中的目标语言。</dd></div>
+          <div><dt><code>{glossary}</code></dt><dd data-i18n="phGlossary">术语表原文内容。</dd></div>
+          <div><dt><code>{glossaryBlock}</code></dt><dd data-i18n="phGlossaryBlock">整理后的术语表说明，适合直接放进页面处理提示词。</dd></div>
+          <div><dt><code>{url}</code></dt><dd data-i18n="phUrl">预留页面地址占位符，当前版本可能为空。</dd></div>
+        </dl>
+      </aside>
+
+      <p class="muted footerNote" data-i18n="footerNote">API Key 仅保存在浏览器本地 storage。Base URL 需要兼容 OpenAI Chat Completions：/chat/completions。</p>
+      <p id="status" class="status" role="status"></p>
+    </main>
+    <script src="i18n.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

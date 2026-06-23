@@ -1,0 +1,28 @@
+{
+  "name": "vanslate",
+  "version": "1.1.0",
+  "description": "薇译 —— 基于 AI 大模型的浏览器翻译扩展，支持整页翻译、划词翻译、自定义模型与 API，保留原始排版。",
+  "author": "Vinsea",
+  "homepage": "https://tools.vinxea.com/vanslate/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vinsea/vanslate.git"
+  },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/test.mjs",
+    "e2e": "npm run build && playwright test --config=playwright.config.ts",
+    "e2e:report": "playwright show-report reports/playwright-html",
+    "validate": "node scripts/validate-project.mjs",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build && npm test && npm run validate",
+    "package:chrome": "npm run build && node scripts/package-chrome.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "esbuild": "^0.25.4",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>薇译 Vanslate</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="popup">
+    <main>
+      <header class="popupBanner brandHero compact">
+        <img class="heroLogo" src="icons/png/vanslate-128.png" alt="薇译 Vanslate">
+        <div>
+          <h1>薇译 Vanslate</h1>
+          <p class="heroCn" data-i18n="appSubtitle">不止翻译。</p>
+        </div>
+        <button id="optionsBtn" class="topSettingsButton" type="button" title="打开设置" data-i18n="openSettings">⚙ 设置</button>
+      </header>
+
+      <section class="quickSettings settingsCard">
+        <label>
+          <span data-i18n="model">模型</span>
+          <select id="quickModel"></select>
+        </label>
+        <div class="languageGrid">
+          <label>
+            <span data-i18n="sourceLanguage">源语言</span>
+            <select id="quickSourceLanguage">
+              <option value="auto">auto</option>
+              <option value="中文">中文</option>
+              <option value="English">English</option>
+              <option value="日本語">日本語</option>
+              <option value="한국어">한국어</option>
+              <option value="Français">Français</option>
+              <option value="Deutsch">Deutsch</option>
+              <option value="Español">Español</option>
+              <option value="Português">Português</option>
+              <option value="Italiano">Italiano</option>
+              <option value="Русский">Русский</option>
+              <option value="العربية">العربية</option>
+              <option value="हिन्दी">हिन्दी</option>
+              <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+              <option value="Tiếng Việt">Tiếng Việt</option>
+              <option value="ไทย">ไทย</option>
+            </select>
+          </label>
+          <button id="swapLanguagesBtn" class="iconButton secondary" type="button" title="交换源语言和目标语言" data-i18n-title="swapLanguages">⇄</button>
+          <label>
+            <span data-i18n="targetLanguage">目标语言</span>
+            <select id="quickTargetLanguage">
+              <option value="中文">中文</option>
+              <option value="English">English</option>
+              <option value="日本語">日本語</option>
+              <option value="한국어">한국어</option>
+              <option value="Français">Français</option>
+              <option value="Deutsch">Deutsch</option>
+              <option value="Español">Español</option>
+              <option value="Português">Português</option>
+              <option value="Italiano">Italiano</option>
+              <option value="Русский">Русский</option>
+              <option value="العربية">العربية</option>
+              <option value="हिन्दी">हिन्दी</option>
+              <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+              <option value="Tiếng Việt">Tiếng Việt</option>
+              <option value="ไทย">ไทย</option>
+            </select>
+          </label>
+        </div>
+        <div class="quickTools">
+          <div class="quickToolsHeader">
+            <strong data-i18n="tools">工具</strong>
+            <span data-i18n="toolsQuickHint">开启/关闭并快速切换模型</span>
+          </div>
+          <div id="quickToolsList" class="quickToolsList"></div>
+        </div>
+      </section>
+
+      <div class="popupActions">
+        <button id="translateBtn" type="button" data-i18n="fullTranslate">全文翻译</button>
+        <button id="clearBtn" type="button" class="secondary" data-i18n="clearTranslations">清除译文</button>
+      </div>
+    </main>
+    <script src="i18n.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
